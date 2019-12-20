@@ -27,8 +27,7 @@ RUN curl -Ls https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | su
 RUN sudo sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
 RUN sudo apt update
 RUN sudo apt install -y ros-dashing-desktop
-RUN sudo apt install -y python3-argcomplete
-RUN sudo apt install -y python3-colcon-common-extensions
+RUN sudo apt install -y python3-argcomplete python3-colcon-common-extensions
 RUN sudo apt install -y python-rosdep python3-vcstool # https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/
 RUN grep -F "source /opt/ros/dashing/setup.bash" ~/.bashrc || echo "source /opt/ros/dashing/setup.bash" >> ~/.bashrc
 RUN set +u
@@ -37,14 +36,33 @@ RUN set +u
 RUN /bin/bash -c "source /opt/ros/dashing/setup.bash"
 RUN echo "Success installing ROS2 dashing"
 
-# Install missing packages for our workflow
+# Install catkin library
+RUN git clone https://github.com/ros/catkin.git
+RUN sudo apt-get -y install cmake python-catkin-pkg python-empy python-nose python-setuptools libgtest-dev build-essential
+RUN cd catkin/ && mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ../
+RUN cd catkin/build && make
+RUN cd catkin/build && sudo make install
+RUN cd ~
+RUN /bin/bash -c ". /usr/local/setup.bash"
+RUN /bin/bash -c ". .bashrc"
+RUN grep -F "source /usr/local/setup.bash" ~/.bashrc || echo "source /usr/local/setup.bash" >> ~/.bashrc
+RUN cd ~
+
+# Install yaml-cpp library
+RUN git clone https://github.com/jbeder/yaml-cpp.git
+RUN cd yaml-cpp/ && mkdir -p build && cd build && cmake DCMAKE_BUILD_TYPE=Release ../
+RUN cd yaml-cpp/build && sudo make install
+RUN cd ~
+RUN /bin/bash -c ". /usr/local/setup.bash"
+RUN /bin/bash -c ". .bashrc"
+RUN grep -F "source /usr/local/setup.bash" ~/.bashrc || echo "source /usr/local/setup.bash" >> ~/.bashrc
+
+# Install doxygen, cpplint + python packages
 RUN sudo apt-get install -y doxygen
-RUN sudo apt-get install -y python3
-RUN sudo apt-get install -y python3-pip
-RUN sudo apt-get install -y libboost-dev
-RUN sudo apt-get install -y lcov
+RUN sudo apt-get install -y python3 python3-pip libboost-dev lcov
 RUN sudo pip3 install colcon-lcov-result
 RUN sudo apt-get -y install cmake python-catkin-pkg python-empy python-nose python-setuptools libgtest-dev build-essential
+RUN sudo pip3 install cpplint
 
 # Remove apt lists (for storage efficiency)
 RUN sudo rm -rf /var/lib/apt/lists/*
