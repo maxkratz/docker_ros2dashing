@@ -17,10 +17,11 @@ The Dockerfile can be found at:
 Various packages are installed in this docker container:
 
 * Some utility packages like git, wget, curl etc.
-* [ROS2](https://index.ros.org/doc/ros2/Installation/Dashing/) dashing (thats the whole point ...)
+* [ROS2 dashing](https://index.ros.org/doc/ros2/Installation/Dashing/) (thats the whole point ...)
 * [python3](https://www.python.org/) (+pip3 with various ros packages)
 * [colcon](https://colcon.readthedocs.io/en/released/)
 * [catkin](https://github.com/ros/catkin)
 * [yaml-cpp](https://github.com/jbeder/yaml-cpp)
 * [doxygen](http://http://doxygen.nl/)
 * [cpplint](https://github.com/cpplint/cpplint)
+* [googletest-suite](https://github.com/google/googletest)

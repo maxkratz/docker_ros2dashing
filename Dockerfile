@@ -64,6 +64,11 @@ RUN sudo pip3 install colcon-lcov-result
 RUN sudo apt-get -y install cmake python-catkin-pkg python-empy python-nose python-setuptools libgtest-dev build-essential
 RUN sudo pip3 install cpplint
 
+# Install googletest-suite (based on https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/)
+RUN sudo apt install libgtest-dev cmake
+RUN cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make # build googletest-suite
+RUN cd /usr/src/gtest && sudo cp *.a /usr/lib # copy build libraries to /usr/lib
+
 # Remove apt lists (for storage efficiency)
 RUN sudo rm -rf /var/lib/apt/lists/*
 
