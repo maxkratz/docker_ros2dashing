@@ -30,6 +30,7 @@ RUN sudo apt install -y ros-dashing-desktop
 RUN sudo apt install -y python3-argcomplete python3-colcon-common-extensions
 RUN sudo apt install -y python-rosdep python3-vcstool # https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/
 RUN grep -F "source /opt/ros/dashing/setup.bash" ~/.bashrc || echo "source /opt/ros/dashing/setup.bash" >> ~/.bashrc
+RUN grep -F ". /opt/ros/dashing/setup.bash" ~/.bashrc || echo ". /opt/ros/dashing/setup.bash" >> ~/.bashrc
 RUN set +u
 
 # Source ros dashing setup-file
@@ -46,6 +47,7 @@ RUN cd ~
 RUN /bin/bash -c ". /usr/local/setup.bash"
 RUN /bin/bash -c ". .bashrc"
 RUN grep -F "source /usr/local/setup.bash" ~/.bashrc || echo "source /usr/local/setup.bash" >> ~/.bashrc
+RUN grep -F ". /usr/local/setup.bash" ~/.bashrc || echo ". /usr/local/setup.bash" >> ~/.bashrc
 RUN cd ~
 
 # Install yaml-cpp library
@@ -56,6 +58,7 @@ RUN cd ~
 RUN /bin/bash -c ". /usr/local/setup.bash"
 RUN /bin/bash -c ". .bashrc"
 RUN grep -F "source /usr/local/setup.bash" ~/.bashrc || echo "source /usr/local/setup.bash" >> ~/.bashrc
+RUN grep -F ". /usr/local/setup.bash" ~/.bashrc || echo ". /usr/local/setup.bash" >> ~/.bashrc
 
 # Install doxygen, cpplint + python packages
 RUN sudo apt-get install -y doxygen
