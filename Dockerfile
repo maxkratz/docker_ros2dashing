@@ -31,7 +31,7 @@ RUN sudo apt install -y python3-argcomplete
 
 # There was a version conflict with the package provided by apt so we install it via pip3
 # RUN sudo apt intsall python3-colcon-common-extensions
-RUN pip3 install -U colcon-common-extensions
+# RUN pip3 install -U colcon-common-extensions # We install this later (after pip3 gets installed)
 
 RUN sudo apt install -y python-rosdep python3-vcstool # https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/
 RUN grep -F "source /opt/ros/dashing/setup.bash" ~/.bashrc || echo "source /opt/ros/dashing/setup.bash" >> ~/.bashrc
@@ -77,6 +77,9 @@ RUN sudo apt-get install -y python3 python3-pip libboost-dev lcov
 RUN sudo pip3 install colcon-lcov-result
 RUN sudo apt-get -y install cmake python-catkin-pkg python-empy python-nose python-setuptools libgtest-dev build-essential
 RUN sudo pip3 install cpplint
+
+# Finish colcon-common-extensions
+RUN pip3 install -U colcon-common-extensions
 
 # Install googletest-suite (based on https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/)
 RUN sudo apt install libgtest-dev cmake
