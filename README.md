@@ -26,6 +26,7 @@ Various packages are installed in this docker container:
 * [doxygen](http://http://doxygen.nl/)
 * [cpplint](https://github.com/cpplint/cpplint)
 * [googletest-suite](https://github.com/google/googletest) (built from source)
+* [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
 * [opencv](https://opencv.org/) (built from source)
 * [intel-realsense packages](https://github.com/intel/ros2_intel_realsense)
 

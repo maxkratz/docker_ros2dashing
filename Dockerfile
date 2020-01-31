@@ -91,6 +91,9 @@ RUN sudo cmake CMakeLists.txt
 RUN sudo make
 RUN sudo cp *.a /usr/lib
 
+# Install clang-format (https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
+RUN sudo apt install -y clang-format
+
 # Install opencv (based on https://linuxize.com/post/how-to-install-opencv-on-ubuntu-18-04/)
 #RUN sudo apt install python3-opencv # this is not the recommend way
 
