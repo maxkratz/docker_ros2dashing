@@ -6,11 +6,11 @@ steps:
     image: plugins/docker
     settings:
         repo: maxkratz/ros2dashing
-        tags: latest
+        tags: opencv
         username:
             from_secret: dockerhub_username
         password:
             from_secret: dockerhub_password
     when:
         branch:
-            - master
+            - opencv
