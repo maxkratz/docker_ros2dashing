@@ -21,6 +21,9 @@ WORKDIR /home/ubuntu
 ENV HOME=/home/ubuntu
 ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
+# Increase inotify.max_user_watches (size)
+RUN echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
 # Run and install ros2:dashing stuff
 RUN sudo apt install -y curl gnupg lsb-release
 RUN curl -Ls https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | sudo apt-key add -
