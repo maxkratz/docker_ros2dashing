@@ -92,7 +92,7 @@ RUN sudo make
 RUN sudo cp *.a /usr/lib
 
 # Install clang-format (https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
-RUN sudo apt install clang-format
+RUN sudo apt install -y clang-format
 
 # Source again
 RUN /bin/bash -c "source /opt/ros/dashing/setup.bash"
