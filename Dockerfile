@@ -94,6 +94,13 @@ RUN sudo cp *.a /usr/lib
 # Install clang-format (https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
 RUN sudo apt install -y clang-format
 
+# Install related packages for Intel RealSense (based on https://github.com/intel/ros2_intel_realsense)
+RUN sudo apt-get update
+RUN sudo apt-get install -y ros-dashing-cv-bridge ros-dashing-librealsense2 ros-dashing-message-filters ros-dashing-image-transport
+RUN sudo apt-get install -y libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
+RUN sudo apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+RUN sudo apt-get install -y ros-dashing-realsense-camera-msgs ros-dashing-realsense-ros2-camera
+
 # Install opencv (based on https://linuxize.com/post/how-to-install-opencv-on-ubuntu-18-04/)
 #RUN sudo apt install python3-opencv # this is not the recommend way
 
@@ -122,13 +129,6 @@ RUN sudo make install
 
 # Reset workdir to home-folder
 WORKDIR /home/ubuntu
-
-# Install related packages for Intel RealSense (based on https://github.com/intel/ros2_intel_realsense)
-RUN sudo apt-get update
-RUN sudo apt-get install -y ros-dashing-cv-bridge ros-dashing-librealsense2 ros-dashing-message-filters ros-dashing-image-transport
-RUN sudo apt-get install -y libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
-RUN sudo apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
-RUN sudo apt-get install -y ros-dashing-realsense-camera-msgs ros-dashing-realsense-ros2-camera
 
 # Source again
 RUN /bin/bash -c "source /opt/ros/dashing/setup.bash"
