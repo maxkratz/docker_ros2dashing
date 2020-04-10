@@ -86,6 +86,9 @@ RUN cp *.a /usr/lib
 # Install clang-format (https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
 RUN apt install -y clang-format
 
+# Reset workdir to home-folder
+WORKDIR /root
+
 # Source again
 RUN /bin/bash -c "source /opt/ros/dashing/setup.bash"
 
