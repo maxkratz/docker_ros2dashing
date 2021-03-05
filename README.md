@@ -3,6 +3,9 @@
 *Unofficial* ROS2 dashing Dockerfile with some goodies.
 Prebuild images can be found at [Dockerhub](https://hub.docker.com/r/maxkratz/ros2dashing).
 
+[![Build Status](https://github.ci.maxkratz.com/api/badges/maxkratz/docker_ros2dashing/status.svg)](https://github.ci.maxkratz.com/maxkratz/docker_ros2dashing)
+
+
 ## Quickstart
 After installing docker, just run the following command:
 
@@ -13,6 +16,7 @@ docker run -it maxkratz/ros2dashing:latest
 ## Dockerfile
 The Dockerfile can be found at:
 [https://github.com/maxkratz/docker_ros2dashing/blob/master/Dockerfile](https://github.com/maxkratz/docker_ros2dashing/blob/master/Dockerfile)
+
 
 ## What gets installed in this container?
 Various packages are installed in this docker container:
@@ -29,6 +33,7 @@ Various packages are installed in this docker container:
 * [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
 * [opencv](https://opencv.org/) (built from source)
 * [intel-realsense packages](https://github.com/intel/ros2_intel_realsense)
+
 
 ## Issues & Contribution
 If you find any problems, bugs or missing packages, feel free to open an [issue on github](https://github.com/maxkratz/docker_ros2dashing/issues).
