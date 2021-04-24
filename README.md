@@ -32,6 +32,7 @@ Various packages are installed in this docker container:
 * [googletest-suite](https://github.com/google/googletest) (built from source)
 * [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
 * [opencv](https://opencv.org/) (built from source)
+    * Only available with tag `opencv`.
 * [intel-realsense packages](https://github.com/intel/ros2_intel_realsense)
 
 
