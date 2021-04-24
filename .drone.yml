@@ -1,16 +1,34 @@
 kind: pipeline
 name: default
 
+auth: &auth
+    username:
+        from_secret: dockerhub_username
+    password:
+        from_secret: dockerhub_password
+
+repo: &repo
+    repo: maxkratz/ros2dashing
+
 steps:
-  - name: docker  
+  - name: build-latest
     image: plugins/docker
     settings:
-        repo: maxkratz/ros2dashing
+        <<: *repo
         tags: latest
-        username:
-            from_secret: dockerhub_username
-        password:
-            from_secret: dockerhub_password
+        <<: *auth
     when:
         branch:
             - master
+
+  - name: build-opencv
+    image: plugins/docker
+    settings:
+        dockerfile: opencv/Dockerfile
+        <<: *repo
+        tags: opencv
+        <<: *auth
+    when:
+        branch:
+            - master
+    depends_on: [ build-latest ]
