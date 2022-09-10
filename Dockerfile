@@ -16,18 +16,18 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 RUN echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
 # Run and install ros2:dashing stuff
-RUN apt install -y curl gnupg lsb-release
+RUN apt-get install -y curl gnupg lsb-release
 RUN curl -Ls https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | sudo apt-key add -
 RUN sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
-RUN apt update
-RUN apt install -y ros-dashing-desktop
-RUN apt install -y python3-argcomplete
+RUN apt-get update
+RUN apt-get install -y ros-dashing-desktop
+RUN apt-get install -y python3-argcomplete
 
 # There was a version conflict with the package provided by apt so we install it via pip3
-# RUN sudo apt intsall python3-colcon-common-extensions
+# RUN sudo apt-get intsall python3-colcon-common-extensions
 # RUN pip3 install -U colcon-common-extensions # We install this later (after pip3 gets installed)
 
-RUN apt install -y python-rosdep python3-vcstool # https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/
+RUN apt-get install -y python-rosdep python3-vcstool # https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/
 RUN grep -F "source /opt/ros/dashing/setup.bash" ~/.bashrc || echo "source /opt/ros/dashing/setup.bash" >> ~/.bashrc
 RUN grep -F ". /opt/ros/dashing/setup.bash" ~/.bashrc || echo ". /opt/ros/dashing/setup.bash" >> ~/.bashrc
 RUN set +u
@@ -77,14 +77,14 @@ RUN pip3 install cpplint
 RUN pip3 install colcon-common-extensions
 
 # Install googletest-suite (based on https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/)
-RUN apt install libgtest-dev cmake
+RUN apt-get install libgtest-dev cmake
 WORKDIR /usr/src/gtest
 RUN cmake CMakeLists.txt
 RUN make
 RUN cp *.a /usr/lib
 
 # Install clang-format (https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
-RUN apt install -y clang-format
+RUN apt-get install -y clang-format
 
 # Reset workdir to home-folder
 WORKDIR /root
