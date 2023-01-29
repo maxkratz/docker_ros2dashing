@@ -3,7 +3,7 @@
 *Unofficial* ROS2 dashing Dockerfile with some goodies.
 Prebuild images can be found at [Dockerhub](https://hub.docker.com/r/maxkratz/ros2dashing).
 
-[![Build Status](https://github.ci.maxkratz.com/api/badges/maxkratz/docker_ros2dashing/status.svg)](https://github.ci.maxkratz.com/maxkratz/docker_ros2dashing)
+[![Build Docker images](https://github.com/maxkratz/docker_ros2dashing/actions/workflows/build.yml/badge.svg)](https://github.com/maxkratz/docker_ros2dashing/actions/workflows/build.yml)
 
 
 ## Quickstart
