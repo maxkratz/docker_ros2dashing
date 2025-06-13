@@ -1,6 +1,6 @@
 # Use ros2dashing:latest as base
 FROM maxkratz/ros2dashing:latest
-LABEL maintainer="Max Kratz <account@maxkratz.com>"
+LABEL maintainer="Max Kratz <github@maxkratz.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install related packages for Intel RealSense (based on https://github.com/intel/ros2_intel_realsense)
