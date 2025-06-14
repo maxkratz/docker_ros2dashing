@@ -1,10 +1,9 @@
-name: Build Docker images
+name: Build and push Docker images
 on:
   push:
     branches:
-      - 'testing/**'
-      - 'feature/**'
-      - 'hotfix/**'
+      - 'main'
+      - 'master'
 
 jobs:
   build-latest:
@@ -16,11 +15,16 @@ jobs:
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build latest
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: false
+          push: true
           tags: maxkratz/ros2dashing:latest
           platforms: linux/amd64
 
@@ -34,10 +38,15 @@ jobs:
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build OpenCV version
         uses: docker/build-push-action@v5
         with:
           context: ./opencv
-          push: false
+          push: true
           tags: maxkratz/ros2dashing:opencv
           platforms: linux/amd64
